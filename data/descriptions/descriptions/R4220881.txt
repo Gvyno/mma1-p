@@ -1,0 +1,4 @@
+Setting : Close To Sea, Close To Town.
+Orientation : South.
+Condition : Good.
+Views : Sea, Mountain, Panoramic, Urban.

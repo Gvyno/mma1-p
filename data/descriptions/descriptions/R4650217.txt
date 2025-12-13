@@ -1,0 +1,8 @@
+Urban plot in Cancelada with the possibility of building a semi-detached house south facing, on a corner.
+Zone typology UA
+Buildability 0.8
+Land occupancy 60%
+Volume: Possibility of 2 floors or 7 meters. GF+1+ tower with 25% occupancy
+
+parking/basement
+NO PROJECT

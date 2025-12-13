@@ -1,0 +1,18 @@
+Shop, -- Select --, Costa del Sol.
+Built 100 m².
+
+Setting : Suburban, Commercial Area, Close To Shops.
+Orientation : North East, East, South East, South.
+Condition : Renovation Required.
+Utilities : Electricity, Drinkable Water.
+Category : Bargain, Investment.
+
+
+Shop, -- Select --, Costa del Sol.
+Built 100 m².
+
+Setting : Suburban, Commercial Area, Close To Shops.
+Orientation : North East, East, South East, South.
+Condition : Renovation Required.
+Utilities : Electricity, Drinkable Water.
+Category : Bargain, Investment.

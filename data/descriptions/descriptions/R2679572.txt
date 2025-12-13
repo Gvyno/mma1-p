@@ -1,0 +1,10 @@
+Sector11, Plot8
+Residential Plot, La Cala Golf, Costa del Sol.
+Garden/Plot 1608m². 
+buildable: 321m2
+Setting : Country, Mountain Pueblo, Close To Golf, Close To Schools, Close To Forest.
+Orientation : East, South East, South.
+Pool : Room For Pool.
+Views : Mountain, Golf, Panoramic.
+Utilities : Electricity, Drinkable Water.
+Category : Off Plan.

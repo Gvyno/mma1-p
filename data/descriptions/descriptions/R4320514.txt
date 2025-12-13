@@ -1,0 +1,9 @@
+Land for sale in the Paraiso area, Estepona in front of the El Campanario golf course.
+Land of 9,751.01 square meters divided into 15 plots from 550 m2 to 740m2 with a construction license for an isolated single-family home.
+There is a basic project with different styles of facade.
+Buildability 0.4
+occupancy 30%
+Maximum height 7m
+Separation boundaries 3m
+minimum front 8m
+Minimum depth 15m

@@ -1,0 +1,4 @@
+Fantastic plot with un interrupted views across the valley
+
+Plot,  Close to Town,  Facing: Southwest
+Views: Countryside, Mountains.

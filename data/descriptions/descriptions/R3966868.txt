@@ -1,0 +1,10 @@
+Warehouse, Marbella, Costa del Sol.
+
+
+Setting : Beachfront, Town, Commercial Area, Beachside, Close To Golf, Close To Port, Close To Shops, Close To Sea, Close To Schools, Close To Marina.
+Orientation : West.
+Condition : Excellent.
+Features : Near Transport, Storage Room, Restaurant On Site.
+Parking : Garage, Covered, More Than One, Private.
+Utilities : Electricity, Drinkable Water, Telephone.
+Category : Bargain, Investment, Resale.
