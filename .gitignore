@@ -1,0 +1,4 @@
+﻿images
+__pycache__
+test_prediction.py
+models/random_forest.pkl
