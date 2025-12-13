@@ -1,0 +1,354 @@
+================================================================================
+DATA DESCRIPTION - properties_processed.csv
+================================================================================
+
+Dataset: Real estate properties in southern Spain (April 2024)
+Total properties: 10,391
+Total features: 36
+
+================================================================================
+COLUMN DESCRIPTIONS
+================================================================================
+
+reference
+---------
+Type: String (Identifier)
+Description: Unique property reference ID (e.g., R126116)
+Usage: Property identifier, links to description and image files
+
+location
+--------
+Type: String (Categorical)
+Description: Geographic location of the property
+Unique values: 210
+Usage: Location-based analysis, regional pricing patterns
+
+price
+-----
+Type: Numeric (Float)
+Description: Property listing price in Euros (EUR)
+Range: EUR 34,900 - EUR 50,000,000
+Mean: EUR 1,031,107
+Median: EUR 485,000
+Usage: TARGET VARIABLE for price prediction models
+
+bedrooms
+--------
+Type: Numeric (Float)
+Description: Number of bedrooms
+Range: 1 - 9
+Mean: 3.2
+Correlation with price: 0.5089
+Data cleaning: Outliers >20 removed, IQR capping applied (max 9)
+
+bathrooms
+---------
+Type: Numeric (Float)
+Description: Number of bathrooms (includes half-baths as 0.5)
+Range: 0.5 - 5.5
+Mean: 2.7
+Correlation with price: 0.5730
+Data cleaning: Outliers >15 removed, IQR capping applied (max 5.5)
+
+indoor_sqm
+----------
+Type: Numeric (Float)
+Description: Indoor surface area in square meters
+Range: 10 - 684 sqm
+Mean: 213.5 sqm
+Correlation with price: 0.6460 (STRONGEST PREDICTOR)
+Data cleaning: IQR capping applied (max 684.5 sqm)
+
+property_type
+-------------
+Type: String (Categorical)
+Description: Type of property extracted from title
+Unique values: 106
+Usage: Property classification, type-based analysis
+location_encoded
+----------------
+Type: Numeric (Float)
+Description: Target-encoded location feature (encoded by average price per location)
+Range: EUR 72,400 - EUR 8,308,182
+Mean: EUR 1,031,107
+Correlation with price: 0.4479
+Encoding method: Target encoding (mean price per location)
+Original categories: 210 unique locations
+Usage: Location-based price prediction, geographic patterns
+
+property_type_encoded
+---------------------
+Type: Numeric (Float)
+Description: Target-encoded property type feature (encoded by average price per type)
+Range: EUR 84,333 - EUR 20,000,000
+Mean: EUR 1,031,107
+Correlation with price: 0.5990 (2ND STRONGEST PREDICTOR)
+Encoding method: Target encoding (mean price per property type)
+Original categories: 106 unique property types
+Usage: Property type-based price prediction, classification patterns
+
+
+has_description
+---------------
+Type: Binary (0/1)
+Description: Property has a text description file
+Properties with descriptions: 10,391 (100.0%)
+Source: File existence check
+
+desc_length
+-----------
+Type: Numeric (Integer)
+Description: Length of property description in characters
+Range: 27 - 11723 characters
+Mean: 1241 characters
+Correlation with price: 0.1469
+Source: Extracted from description text files
+
+desc_has_luxury
+---------------
+Type: Boolean (True/False)
+Description: Property description contains 'luxury' or 'luxurious'
+Properties with this feature: 2,605 (25.1%)
+Correlation with price: 0.2481
+Source: Text analysis of property descriptions
+
+desc_has_exclusive
+------------------
+Type: Boolean (True/False)
+Description: Property description contains 'exclusive'
+Properties with this feature: 1,472 (14.2%)
+Correlation with price: 0.1409
+Source: Text analysis of property descriptions
+
+desc_has_stunning
+-----------------
+Type: Boolean (True/False)
+Description: Property description contains 'stunning'
+Properties with this feature: 1,987 (19.1%)
+Correlation with price: 0.1284
+Source: Text analysis of property descriptions
+
+image_count
+-----------
+Type: Numeric (Integer)
+Description: Number of property listing images
+Range: 0 - 46 images
+Mean: 22.3 images
+Correlation with price: 0.0811
+Source: Image folder analysis
+
+greenery_photo_count
+--------------------
+Type: Numeric (Integer)
+Description: Number of photos with green-dominant pixels (gardens/landscaping)
+Range: 0 - 30 photos
+Mean: 4.6 photos
+Properties with greenery photos: 8,669 (83.4%)
+Correlation with price: 0.1664
+Source: Computer vision analysis of property images
+Method: Color analysis - green channel > red & blue channels
+
+has_Private_Pool
+----------------
+Type: Binary (0/1)
+Description: Property has feature 'Private Pool'
+Properties with this feature: 2,771 (26.7%)
+Correlation with price: 0.4316
+Source: Structured property features (pipe-separated list)
+
+has_Private_Garden
+------------------
+Type: Binary (0/1)
+Description: Property has feature 'Private Garden'
+Properties with this feature: 3,563 (34.3%)
+Correlation with price: 0.3240
+Source: Structured property features (pipe-separated list)
+
+has_U_F_Heating_Climate_Control
+-------------------------------
+Type: Binary (0/1)
+Description: Property has feature 'U F Heating Climate Control'
+Properties with this feature: 967 (9.3%)
+Correlation with price: 0.3006
+Source: Structured property features (pipe-separated list)
+
+has_Games_Room
+--------------
+Type: Binary (0/1)
+Description: Property has feature 'Games Room'
+Properties with this feature: 593 (5.7%)
+Correlation with price: 0.2974
+Source: Structured property features (pipe-separated list)
+
+has_Luxury
+----------
+Type: Binary (0/1)
+Description: Property has feature 'Luxury'
+Properties with this feature: 2,769 (26.6%)
+Correlation with price: 0.2847
+Source: Structured property features (pipe-separated list)
+
+has_Communal_Pool
+-----------------
+Type: Binary (0/1)
+Description: Property has feature 'Communal Pool'
+Properties with this feature: 5,465 (52.6%)
+Correlation with price: -0.2674
+Source: Structured property features (pipe-separated list)
+
+has_Alarm_System_Security
+-------------------------
+Type: Binary (0/1)
+Description: Property has feature 'Alarm System Security'
+Properties with this feature: 2,106 (20.3%)
+Correlation with price: 0.2422
+Source: Structured property features (pipe-separated list)
+
+has_Jacuzzi
+-----------
+Type: Binary (0/1)
+Description: Property has feature 'Jacuzzi'
+Properties with this feature: 1,003 (9.7%)
+Correlation with price: 0.2376
+Source: Structured property features (pipe-separated list)
+
+has_Communal_Garden
+-------------------
+Type: Binary (0/1)
+Description: Property has feature 'Communal Garden'
+Properties with this feature: 4,847 (46.6%)
+Correlation with price: -0.2366
+Source: Structured property features (pipe-separated list)
+
+has_Domotics
+------------
+Type: Binary (0/1)
+Description: Property has feature 'Domotics'
+Properties with this feature: 526 (5.1%)
+Correlation with price: 0.2269
+Source: Structured property features (pipe-separated list)
+
+has_Gym
+-------
+Type: Binary (0/1)
+Description: Property has feature 'Gym'
+Properties with this feature: 1,455 (14.0%)
+Correlation with price: 0.2265
+Source: Structured property features (pipe-separated list)
+
+has_Barbeque
+------------
+Type: Binary (0/1)
+Description: Property has feature 'Barbeque'
+Properties with this feature: 1,875 (18.0%)
+Correlation with price: 0.1964
+Source: Structured property features (pipe-separated list)
+
+has_Sauna
+---------
+Type: Binary (0/1)
+Description: Property has feature 'Sauna'
+Properties with this feature: 794 (7.6%)
+Correlation with price: 0.1912
+Source: Structured property features (pipe-separated list)
+
+has_New_Construction_Condition
+------------------------------
+Type: Binary (0/1)
+Description: Property has feature 'New Construction Condition'
+Properties with this feature: 713 (6.9%)
+Correlation with price: 0.1858
+Source: Structured property features (pipe-separated list)
+
+has_Guest_Apartment
+-------------------
+Type: Binary (0/1)
+Description: Property has feature 'Guest Apartment'
+Properties with this feature: 716 (6.9%)
+Correlation with price: 0.1856
+Source: Structured property features (pipe-separated list)
+
+has_Staff_Accommodation
+-----------------------
+Type: Binary (0/1)
+Description: Property has feature 'Staff Accommodation'
+Properties with this feature: 369 (3.6%)
+Correlation with price: 0.1802
+Source: Structured property features (pipe-separated list)
+
+has_Heated_pool
+---------------
+Type: Binary (0/1)
+Description: Property has feature 'Heated Pool'
+Properties with this feature: 816 (7.9%)
+Correlation with price: 0.1792
+Source: Structured property features (pipe-separated list)
+
+has_Fireplace_Climate_Control
+-----------------------------
+Type: Binary (0/1)
+Description: Property has feature 'Fireplace Climate Control'
+Properties with this feature: 2,713 (26.1%)
+Correlation with price: 0.1716
+Source: Structured property features (pipe-separated list)
+
+has_Pool_Views
+--------------
+Type: Binary (0/1)
+Description: Property has feature 'Pool Views'
+Properties with this feature: 3,324 (32.0%)
+Correlation with price: 0.1635
+Source: Structured property features (pipe-separated list)
+
+has_More_Than_One_Parking
+-------------------------
+Type: Binary (0/1)
+Description: Property has feature 'More Than One Parking'
+Properties with this feature: 1,946 (18.7%)
+Correlation with price: 0.1560
+Source: Structured property features (pipe-separated list)
+
+================================================================================
+DATA QUALITY & PREPROCESSING
+================================================================================
+
+Cleaning steps performed:
+1. Removed 1,695 properties (14%) with missing values in core numeric fields
+2. Dropped outdoor_sqm column (68% missing data)
+3. Capped outliers using IQR method (multiplier=2.5):
+   - bedrooms: capped at 9 (81 properties affected)
+   - bathrooms: capped at 5.5 (667 properties affected)
+   - indoor_sqm: capped at 684.5 sqm (469 properties affected)
+4. Selected top 20 features by correlation with price from 147 available
+
+Missing values in final dataset: 0 (all rows complete)
+
+================================================================================
+FEATURE CATEGORIES
+================================================================================
+
+Core numeric features (3):
+  - bedrooms, bathrooms, indoor_sqm
+
+Categorical features (2 - target encoded):
+  - location_encoded, property_type_encoded
+
+Description-based features (4):
+  - desc_length, desc_has_luxury, desc_has_exclusive, desc_has_stunning
+
+Image-based features (2):
+  - image_count, greenery_photo_count
+
+Structured property features (20 binary):
+  - Selected by correlation with price from original pipe-separated feature list
+
+Metadata (3):
+  - reference, location, property_type
+
+Target variable (1):
+  - price
+
+================================================================================
+Generated by: prep.py preprocessing pipeline
+Date: December 2025
+================================================================================
