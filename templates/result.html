@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8e6cf 0%, #7dd3b0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .prediction-box {
+            background: linear-gradient(135deg, #7dd3b0 0%, #5fb89a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .price {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .info-section {
+            margin-bottom: 20px;
+        }
+        .info-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #7dd3b0;
+            padding-bottom: 5px;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .info-label {
+            font-weight: 500;
+            color: #666;
+        }
+        .info-value {
+            color: #333;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #7dd3b0 0%, #5fb89a 100%);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(125, 211, 176, 0.4);
+        }
+        .confidence-bar {
+            background: #eee;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .confidence-fill {
+            background: linear-gradient(90deg, #7dd3b0 0%, #5fb89a 100%);
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .info-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-section ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+    <script>
+        // Set confidence bar width after page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            const confidenceFill = document.querySelector('.confidence-fill');
+            if (confidenceFill) {
+                const width = confidenceFill.getAttribute('data-width');
+                confidenceFill.style.width = width + '%';
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        
+        <div class="prediction-box">
+            <h2>Predicted Price</h2>
+            <div class="price">€{{ "{:,.2f}".format(result.prediction) }}</div>
+            <p>Confidence: {{ "{:.1f}".format(result.confidence * 100) }}%</p>
+            <div class="confidence-bar">
+                <div class="confidence-fill" data-width="{{ result.confidence * 100 }}"></div>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h3>Property Details</h3>
+            <div class="info-item">
+                <span class="info-label">Bedrooms:</span>
+                <span class="info-value">{{ bedrooms }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Bathrooms:</span>
+                <span class="info-value">{{ bathrooms }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Indoor Area:</span>
+                <span class="info-value">{{ indoor_sqm }} m²</span>
+            </div>
+            {% if result.image_count > 0 %}
+            <div class="info-item">
+                <span class="info-label">Images Analyzed:</span>
+                <span class="info-value">{{ result.image_count }} ({{ result.greenery_photo_count }} with greenery)</span>
+            </div>
+            {% endif %}
+        </div>
+        
+        {% if selected_features %}
+        <div class="info-section">
+            <h3>Selected Features</h3>
+            <ul>
+                {% for feature in selected_features %}
+                <li>{{ feature.replace('_', ' ') }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        
+        {% if result.warnings %}
+        <div class="info-section">
+            <h3>Warnings</h3>
+            {% for warning in result.warnings %}
+            <div class="warning">{{ warning }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div style="text-align: center;">
+            <a href="/" class="back-button">Make Another Prediction</a>
+        </div>
+    </div>
+</body>
+</html>
+

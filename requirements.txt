@@ -5,3 +5,5 @@ seaborn
 scipy
 Pillow
 scikit-learn
+Flask
+joblib
